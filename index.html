@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediSys Dashboard</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <!-- Floating Result Box -->
+    <div id="automationResult" class="floating-box">Automation Ready</div>
+
+    <!-- HEADER -->
+    <header id="header">
+        <div id="logo" class="logo" onclick="goHome()">MediSys</div>
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Search Account or Patient Name...">
+            <button id="searchBtn">Search</button>
+        </div>
+    </header>
+
+    <main>
+        <!-- HOME SECTION -->
+        <section id="homeSection">
+            <h2>Patient Accounts</h2>
+            <div class="add-patient-form">
+                <input type="text" id="newPatName" placeholder="Patient Name">
+                <input type="text" id="newPatAcc" placeholder="Account Number">
+                <input type="text" id="newPatAmt" placeholder="Amount (e.g. $50)">
+                <input type="text" id="newPatIns" placeholder="Insurance">
+                <button id="addPatientBtn">Add Patient</button>
+            </div>
+            <table id="homeTable">
+                <thead>
+                    <tr>
+                        <th>Patient Name</th>
+                        <th>Account Number</th>
+                        <th>Amount</th>
+                        <th>Insurance</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="homeTableBody">
+                </tbody>
+            </table>
+        </section>
+
+        <!-- ACCOUNT VIEW SECTION -->
+        <section id="accountSection" style="display: none;">
+            <!-- Section 1: Basic Info -->
+            <div id="basicInfo" class="block-section" style="display: flex; justify-content: space-between; align-items: flex-start;">
+                <div>
+                    <h3>Basic Info</h3>
+                    <p><strong>Patient Name:</strong> <span id="infoName"></span></p>
+                    <p><strong>Account Number:</strong> <span id="infoAccount"></span></p>
+                    <p><strong>Amount:</strong> <span id="infoAmount"></span></p>
+                </div>
+                <button id="addNoteBtn" class="note-btn">Note+</button>
+            </div>
+
+            <!-- Case Notes Section -->
+            <div id="caseNotesSection" class="block-section">
+                <h3>Case Notes</h3>
+                <div id="notesList"></div>
+            </div>
+
+            <!-- Section 2: History Table -->
+            <div id="historySection" class="block-section">
+                <h3>History</h3>
+                <table id="historyTable">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Charge Allow</th>
+                            <th>Pre Paid</th>
+                            <th>Remaining</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>10/03/2026</td><td>$100</td><td>$50</td><td>$50</td></tr>
+                        <tr><td>15/03/2026</td><td>$200</td><td>$200</td><td>$0</td></tr>
+                        <tr><td>16/03/2026</td><td>$50</td><td>$0</td><td>$50</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Section 3: Action Buttons -->
+            <div id="actionButtons" class="block-section">
+                <button id="logBtn">Log</button>
+                <button id="claimBtn">Claim</button>
+                <button id="ledgerBtn">Ledger</button>
+                <button id="filesBtn">Files</button>
+            </div>
+
+            <!-- Section 4: Ledger Section -->
+            <div id="ledgerSection" class="block-section" style="display: none;">
+                <h3>Ledger</h3>
+                <table id="ledgerTable">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>CPT</th>
+                            <th>Service Code</th>
+                            <th>Type</th>
+                            <th>Amount</th>
+                            <th>Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>17/03/2026</td><td>16549</td><td>M005-8</td><td contenteditable="true">350</td><td contenteditable="true">$75</td><td contenteditable="true">Amount deducted</td></tr>
+                        <tr><td>18/03/2026</td><td>16549</td><td>M005-8</td><td contenteditable="true">400</td><td contenteditable="true">$120</td><td contenteditable="true">Copay processed</td></tr>
+                        <tr><td>19/03/2026</td><td>99213</td><td>M005-9</td><td contenteditable="true">150</td><td contenteditable="true">$250</td><td contenteditable="true">Insurance adjusted</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        <!-- Note Modal -->
+        <div id="noteModal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <h3>Add New Note</h3>
+                <textarea id="noteTextarea" rows="6" placeholder="Type your note here (up to 500 words)..."></textarea>
+                <div class="word-count">Words: <span id="wordCount">0</span> / 500</div>
+                <div class="modal-actions">
+                    <button id="saveNoteBtn" class="note-btn">Save Note</button>
+                    <button id="cancelNoteBtn" class="cancel-btn">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="/script.js"></script>
+</body>
+</html>
+

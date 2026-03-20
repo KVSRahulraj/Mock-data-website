@@ -1,0 +1,5 @@
+{
+  "name": "MediSys Automation Dashboard",
+  "description": "A single-page web application using pure HTML, CSS, and JavaScript that simulates a medical account management dashboard for automation testing.",
+  "requestFramePermissions": []
+}
